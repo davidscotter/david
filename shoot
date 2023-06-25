@@ -1,0 +1,25 @@
+# https://twitter.com/pepe_planet
+# https://twitter.com/pepe_planet/status/1655832948799868929?s=20
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import sys,time,os,json
+
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import ElementNotVisibleException,ElementNotSelectableException,NoSuchElementException
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+import os
+
+def connect_chrome_driver(debug_port):
+    chrome_options = Options()
+    chrome_options.add_experimental_option("debuggerAddress", "127.0.0.1:{}".format(debug_port))
+    driver = webdriver.Chrome(options=chrome_options)
+    
+    try:
+        driver.minimize_window()
+        driver.maximize_window()
+    except:
+        print("捕捉到最大化最小化浏览器失败，忽略")
+    return driver
